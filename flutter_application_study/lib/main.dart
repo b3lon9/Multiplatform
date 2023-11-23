@@ -25,11 +25,25 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// 비즈니스 로직
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
 
   void getNext() {
     current = WordPair.random();
+    notifyListeners();
+  }
+
+  // add the code
+  var favorites = <WordPair>[];   // 배열인가?
+
+  void toggleFavorite() {
+    if (favorites.contains(current)) {
+      favorites.remove(current);
+    } else {
+      favorites.add(current);
+    }
+
     notifyListeners();
   }
 }
@@ -40,22 +54,52 @@ class MyHomePage extends StatelessWidget {
     var appState = context.watch<MyAppState>();
     var pair = appState.current;
 
+    // Heart Icon
+    IconData icon;
+    if (appState.favorites.contains(pair)) {
+      icon = Icons.favorite;
+    } else {
+      icon = Icons.favorite_border;
+    }
+
     return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('A random AWESOME idea:'),
+            // Text('A random AWESOME idea:'),
             // Text(appState.current.asLowerCase),
             BigCard(pair: pair),
+            SizedBox(height:10),
         
             // Add Button
-            ElevatedButton(
-              onPressed: () {
-              print('##### button pressed');
-              appState.getNext();
-             }, 
-             child: Text('Next'))
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                /*ElevatedButton(
+                  onPressed: () {
+                    appState.toggleFavorite();
+                  }, 
+                  child: Text("Like")
+                  ), */
+                ElevatedButton.icon (
+                  onPressed: () {
+                    appState.toggleFavorite();
+                  },
+                  icon: Icon(icon),
+                  label: Text('like'),
+                ),
+
+                SizedBox(width: 10,),
+
+                ElevatedButton(
+                  onPressed: () {
+                   appState.getNext();
+                  }, 
+                  child: Text('Next')
+                 ),
+              ],
+            )
           ],
         ),
       ),
