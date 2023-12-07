@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:toonflix/widgets/button.dart';
+import 'package:toonflix/widgets/curreny_card.dart';
 
 class Player {
   String name;
   String? gender;
 
-  Player({this.gender});
+  Player({required this.name});
 }
 
 void main() {
@@ -31,14 +33,118 @@ class App extends StatelessWidget {
     // return CupertinoApp // Apple
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Hello Flutter!'),
-          centerTitle: true,
+        backgroundColor: Color(0xFF181818),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 80,
+              ),
+              // first row
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        'Hey, Neander',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 34,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        'Welcom back',
+                        style: TextStyle(
+                          color: Colors.white.withOpacity(0.8),
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 60,
+              ),
+
+              Text(
+                'Total Balance',
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Colors.white.withOpacity(0.6),
+                ),
+              ),
+              Text(
+                '\$5 194 482',
+                style: TextStyle(
+                  fontSize: 44,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+
+              const SizedBox(
+                height: 25,
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Button(
+                      text: 'Transfer',
+                      bgColor: Colors.amber,
+                      textColor: Colors.black),
+                  Button(
+                      text: 'Request',
+                      bgColor: Color(0xFF1F2123),
+                      textColor: Colors.white),
+                ],
+              ),
+
+              const SizedBox(
+                height: 50,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const Text(
+                    'Wallets',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 36,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    'View All',
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.8),
+                      fontSize: 18,
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const CurrenyCard(name: "Euro", code: 'EUR', amount: '6 428', icon: Icons.euro_outlined, isInverted: true),
+              Transform.translate(
+                offset: const Offset(0, -20),
+                child: const CurrenyCard(name: 'Bitcoin', code: 'BTC', amount: '9 785', icon: Icons.currency_bitcoin, isInverted: false)
+              ),
+              Transform.translate(
+                offset: Offset(0, -40),
+                child: const CurrenyCard(name: 'Dollar', code: 'USD', amount: '6 428', icon: Icons.money, isInverted: true)
+              ),
+            ],
+          ),
         ),
-        body: Center( // center its child
-          child: Text('Hello, World!'),
-        ),
-      ),    // home은 Widget이 되어야 한다.
+      ), // home은 Widget이 되어야 한다.
     );
   }
 }
