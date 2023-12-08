@@ -53,7 +53,7 @@ Text('Pomodors',
 모든 것은 위젯으로 이루어져 있다 -- *
 - StatelessWidget : 단순, build메서드만을 사용해서 UI만 그려주는 위젯
 - SfatefulWidget : 데이터와 UI를 최신화, 상태를 가지고 있는 위젯
-    State에게 데이터가 변경되었다고 말해주어야 한다.
+    State에게 데이터가 변경되었다고 말해주어야 한다. <state>를 사용할 경우
     setState : build메서드를 다시 실행시켜준다. 꼭 setState안에서 실행할 필요없다.
         setState(() {}) 호출 자체가 build를 다시 하기 때문에 위젯 UI가 다시 그려지기 때문이다.
     (Widget Lifecycle)!
@@ -61,12 +61,16 @@ Text('Pomodors',
         한 번만 호출되며, build보다 먼저 호출되어야 함
     dispose : 위젯이 화면에 나타나지 않으면 호출되는 오버라이드 함수이다.
     
-- Scaffold : 구조를 잡아주는 위젯
+- Scaffold : 구조를 잡아주는 위젯, screen을 위한 기본적인 레이아웃과 설정을 제공함
     backgroundColor
         Colors  // 시스템 색상
         Color(0xFF181818)     // 커스텀 새상 
         Color.fromARGB(255, 18, 18, 18)
         Color.fromRGBO(18,18, 18, 1)    // 투명도를 함께
+- AppBar : 상단의 앱바
+    elevation : 음영 효과
+    centerTitle : 글자 정렬
+
 - Column, Row : 수직, 수평 방향의 위젯
     mainAxisAlignment : 수평인 경우 좌우 정렬(방향 기준)
     crossAxisAlignment : 수직인 경우 좌우 정렬(방향 기준)
@@ -145,6 +149,15 @@ Timer   + import 'dart:async';
 ```
 
 ```text
-what is build Context...?
+supser.key라는 것은 부모 뷰에게 해당 위젯의 key를 보내는 것?이다 
+위젯은 ID식별자 역할을 하기 때문에 key를 가지고 있다.  
+위젯은 본인을 식별할 key를 가지고 있고, ID처럼 쓰인다는 것 --> Flutter는 위젯을 식별하기 위해 ID를 사용함
+```
 
+```text
+[외부 라이브러리]
+pub.dev -> Dart,Flutter
+
+[라이브러리 추가 방법]
+pubspec.yaml
 ```
