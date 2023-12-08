@@ -18,6 +18,16 @@ samples, guidance on mobile development, and a full API reference.
 
 ```text
 모든 것은 위젯으로 이루어져 있다 -- *
+- StatelessWidget : 단순, build메서드만을 사용해서 UI만 그려주는 위젯
+- SfatefulWidget : 데이터와 UI를 최신화, 상태를 가지고 있는 위젯
+    State에게 데이터가 변경되었다고 말해주어야 한다.
+    setState : build메서드를 다시 실행시켜준다. 꼭 setState안에서 실행할 필요없다.
+        setState(() {}) 호출 자체가 build를 다시 하기 때문에 위젯 UI가 다시 그려지기 때문이다.
+    (Widget Lifecycle)!
+    initState : 부모 요소에 의존하는 데이터를 초기화하는 경우 사용함
+        한 번만 호출되며, build보다 먼저 호출되어야 함
+    dispose : 위젯이 화면에 나타나지 않으면 호출되는 오버라이드 함수이다.
+    
 - Scaffold : 구조를 잡아주는 위젯
     backgroundColor
         Colors  // 시스템 색상
@@ -59,6 +69,7 @@ samples, guidance on mobile development, and a full API reference.
         offset : 위젯을 x, y축 방향으로 움직이게 함
             Offset()  
 - SingleChildScrollView : 스크롤할 수 있게 해주는 위젯
+- IconButton
 ```
 
 ```text
@@ -90,4 +101,9 @@ Column
 error size
 화면이 넘쳐 흐르는 경우 스크롤을 할 수 있다.
 스
+```
+
+```text
+what is build Context...?
+
 ```
