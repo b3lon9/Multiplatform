@@ -17,6 +17,39 @@ samples, guidance on mobile development, and a full API reference.
 
 
 ```text
+Theme만드는 방법 -- *
+[제작]
+MaterialApp(
+    theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(
+            backgroundColor: const Color(0xFFE7626C),
+        ),
+        
+        textTheme: const TextTheme(
+            displayLarge: TextStyle(
+                color: Color(0xFF232B55),
+            ),
+        ),
+        
+        cardColor: const Color(0xFFF4EDDB);
+    ),
+);
+
+[적용] Theme.of(context).
+Text('something',
+    style: TextStyle(
+        color: Theme.of(context).cardColor,
+    ),
+),
+
+Text('Pomodors',
+    style: TextStyle(
+        color: Theme.of(context).textTheme.displayLarge!.color,
+    ),
+),
+```
+
+```text
 모든 것은 위젯으로 이루어져 있다 -- *
 - StatelessWidget : 단순, build메서드만을 사용해서 UI만 그려주는 위젯
 - SfatefulWidget : 데이터와 UI를 최신화, 상태를 가지고 있는 위젯
@@ -69,7 +102,14 @@ samples, guidance on mobile development, and a full API reference.
         offset : 위젯을 x, y축 방향으로 움직이게 함
             Offset()  
 - SingleChildScrollView : 스크롤할 수 있게 해주는 위젯
-- IconButton
+- IconButton : 아이콘을 클릭할 수 있는 위젯
+    Icon(Icons.something)
+    onPressed
+- ElevatedButton : 
+- Flexible : 픽셀을 딱 지정해주는 것이 아니라, UI를 비율에 기반해서 더 유연하게 만들 수 있게 해준다.
+    flex : 1, 2, .. 비율을 지정해줌 (default:1)
+    
+- Expanded : 꽉 채워주는 위젯 
 ```
 
 ```text
@@ -84,6 +124,8 @@ const는 opacity값을 알기 힘듦 그래서 opacity를 사용하게 되는
 UI에서는 const를 사용하면 에러가 발생하게 됨
 border Radius도 마찬가지.. 뭔가 일정 값을 매겨주는 곳에 사용하면 안될 것 같다.
 
+위젯 내부에서 함수에 ()괄호를 붙이지 않는 것은
+()괄호는 지금 실행을 의미하기 때문이다.
 ```
 
 ```text
@@ -98,9 +140,8 @@ Column
 ```
 
 ```text
-error size
-화면이 넘쳐 흐르는 경우 스크롤을 할 수 있다.
-스
+Timer   + import 'dart:async';
+    Timer.periodic(Duration(seconds:1), (timer) {})
 ```
 
 ```text
