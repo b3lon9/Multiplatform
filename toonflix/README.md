@@ -89,6 +89,7 @@ Text('Pomodors',
             fontWeight : 글자 굵기
                 FontWeight.w600
 - Container : div같은 child를 가지고 있는 단순 box 위젯
+    margin : EdgeInsets.only(bottom: 20)
     decoration: 꾸며주기
         BoxDecoration : 박스로 꾸밈
             color : 박스 색상
@@ -100,6 +101,8 @@ Text('Pomodors',
                     offset: Offset(0, 0) - 그림자 위치
                     color : 
                 )
+            border : 테두리
+                Border.all(color, width), Border.symmetric,
     clipBehavior : Container외의 영역을 없앨 수 있음, #엣지
         Clip.hardEdge : 외부 영역을 잘라냄
 - Center
@@ -191,6 +194,8 @@ border Radius도 마찬가지.. 뭔가 일정 값을 매겨주는 곳에 사용�
 
 위젯 내부에서 함수에 ()괄호를 붙이지 않는 것은
 ()괄호는 지금 실행을 의미하기 때문이다.
+
+hot reload는 dart코드만 감지한다.
 ```
 
 ```text
@@ -221,4 +226,15 @@ pub.dev -> Dart,Flutter
 
 [라이브러리 추가 방법]
 pubspec.yaml
+```
+
+```text
+플러터에서 브라우저를 여는 방법,
+
+url_launcher라는 것을 다운 받아야 한다.
+    dependencies
+        url_launcher: ^6.1.7
+        
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 ```
