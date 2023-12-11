@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:toonflix/screens/home_screen.dart';
 import 'package:toonflix/services/api_service.dart';
@@ -13,6 +15,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+    scrollBehavior: const MaterialScrollBehavior().copyWith(
+        dragDevices: {
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.touch}
+    ),
     theme: ThemeData(
       textTheme: const TextTheme(
         titleLarge: TextStyle(
@@ -21,6 +28,6 @@ class App extends StatelessWidget {
         ),
       ),
     ),
-    home: const HomeScreen(),
+    home: HomeScreen(),
   );
 }

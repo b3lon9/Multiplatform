@@ -94,7 +94,13 @@ Text('Pomodors',
             color : 박스 색상
             borderRadius : 박스 주위 라운딩
                 BorderRadius.circular~
-    clipBehavior : Container외의 영역을 없앨 수 있음
+            boxShadow : shadow 그림자 넣기
+                BoxShadow(
+                    blurRadius:5    - 그림자가 얼마나 멀리까지 갈지~?
+                    offset: Offset(0, 0) - 그림자 위치
+                    color : 
+                )
+    clipBehavior : Container외의 영역을 없앨 수 있음, #엣지
         Clip.hardEdge : 외부 영역을 잘라냄
 - Center
 - Transform : 위젯의 크기를 설정해주는...?, 부모 위젯에 영향을 주지 않음 ***
@@ -113,7 +119,50 @@ Text('Pomodors',
 - Flexible : 픽셀을 딱 지정해주는 것이 아니라, UI를 비율에 기반해서 더 유연하게 만들 수 있게 해준다.
     flex : 1, 2, .. 비율을 지정해줌 (default:1)
     
-- Expanded : 꽉 채워주는 위젯 
+-* Expanded : 꽉 채워주는 위젯mak
+ 
+- FutureBuilder : builder는 UI를 그려주는 함수이다. 즉 Future데이터를 기다렸다가 그려주는 역할
+    future : Future값을 기다림
+    builder : (context, snapshot) {} 
+        snapshot : future가 데이터를 받았는지 아니면 오류가 났는지 알 수 있음
+            .hasData
+                  if (snapshot.hasData) {
+                    return const Text('There is data!');
+                  } else {
+                    return const Text('Loading...');
+                    
+- CircularProgressIndicator : 프로그레스바
+- ListView : 목록을 보여줄 때 Column, Row를 사용하기 보다 ListView를 사용하는 것이 유용하다.
+          if (snapshot.hasData) {
+            return ListView(
+              children: [
+                for (var webtoon in snapshot.data!)
+                  Text(webtoon.title)
+              ],
+            );
+          } 
+
+// requiredㅏ라메터를 충족시키라~
+- ListView.builder : RecyclerView같은 ListView이다
+    scrollDirection : 방향 
+        Axis.horizontal
+    itemCoumt : 아이템 개수
+    itemBuilder: (context, index) {     : 사용자에게 보이는 부분만 build해서 메모리를 아낄 수 있음
+                var webtoon = snapshot.data![index];
+              },
+                            
+- ListView.separated : builder와 동일하지만 separaterBuilder라는 인자를 더 가진다.
+    separatorBuilder로 만들어진 위젯은 아이템 사이에 만들어진다. 보통 SizedBox를 넣어서 글자 사이를 띄어준다.
+    padding: EdgeInsets.
+
+- ScrollConfiguration : 마우스로 ListView 스크롤이 가능하게 해주는 위젯
+    behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {PointerDeviceKind.mouse})    
+또는.
+main.dart에서 MaterialApp(
+    scrollBehavior: const MaterialScrollBehavior().copyWith(dragDevices: {PointerDeviceKind.mouse}),
+   
+- Image : 이미지 위젯 - 이미지가 로드가 안되는 경우 index.html에 >> engineInitializer.initializeEngine({renderer:"html"}) << 추가
+    Image.network
 ```
 
 ```text
