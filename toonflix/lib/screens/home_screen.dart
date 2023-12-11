@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:toonflix/models/webtoon_model.dart';
 import 'package:toonflix/services/api_service.dart';
+import 'package:toonflix/widgets/webtoon_widget.dart';
 
 // HomeScreen은 값을 받기 이전에 자신의 상태를 알 수 없기 때문에 const로 지정해주면 안된다.
 class HomeScreen extends StatelessWidget{
@@ -56,29 +57,10 @@ class HomeScreen extends StatelessWidget{
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 var webtoon = snapshot.data![index];
-                return Column(
-                  children: [
-                    Container(
-                      width: 250,
-                      clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 5,
-                            offset: const Offset(10, 10),
-                            color: Colors.black.withOpacity(0.5)
-                          ),
-                        ],
-                      ),
-                      child: Image.network(
-                        webtoon.thumb,
-                        headers: const {'referer' : 'https://comic.naver.com'},
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(webtoon.title),
-                  ],
+                return Webtoon(
+                  title: webtoon.title,
+                  thumb: webtoon.thumb,
+                  id: webtoon.id
                 );
               },
               separatorBuilder: (context, index) {

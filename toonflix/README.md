@@ -163,6 +163,18 @@ main.dart에서 MaterialApp(
    
 - Image : 이미지 위젯 - 이미지가 로드가 안되는 경우 index.html에 >> engineInitializer.initializeEngine({renderer:"html"}) << 추가
     Image.network
+    
+- GestureDetector : 이벤트 발생하기 위한 위젯 
+- Navigator : 다른 위젯을 띄어주는 것(화면 이동), StatefulWidget만 띄어줌
+    .route를 푸시한다.
+    .push(context, MaterialPageRoute()); 
+        MaterialPageRoute는 StatelessWidget을 route로 감싼다
+    새롭게 보여질 위젯은 새롭게 Scaffold로 구조해주어야 한다.
+    [다음 페이지를 다른 영역에서 불러오고 싶은 경우]
+    fullscreenDialog..? true로 주면 되는것 같은데 뭔가 별로이다~
+    
+- Hero : 애니메이션 포스터인 것 같은 느낌
+    - 해당되는 위젯을 Hero로 감싼 뒤 동일한 tag명을 주면 됨
 ```
 
 ```text
