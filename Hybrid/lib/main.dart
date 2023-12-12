@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hybrid/widgets/splash_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,8 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      
+    return const MaterialApp(
+      title: 'Hybrid Application',
+      home: SplashWidget(),
     );
   }
 }
