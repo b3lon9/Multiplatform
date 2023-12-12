@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toonflix/models/webtoon_detail_model.dart';
 import 'package:toonflix/models/webtoon_episode_model.dart';
 import 'package:toonflix/services/api_service.dart';
@@ -24,15 +25,52 @@ class _DetailScreenState extends State<DetailScreen> {
   // stateful로 접근해야 한다
   late Future<WebtoonDetailModel> webtoon;
   late Future<List<WebtoonEpisodeModel>> episodes;
+  late SharedPreferences prefs;
+  bool isLike = false;
+
+  // 비동기 메서드
+  Future initPrefs() async {
+    prefs = await SharedPreferences.getInstance();
+    final likedToons = prefs.getStringList('likedToons');
+    if (likedToons != null) {
+      if (likedToons.contains(widget.id) == true) {
+        // 즐겨찾기인 웹툰
+        setState(() {
+          isLike = true;
+        });
+      }
+    } else {
+      print('preference make..');
+      prefs.setStringList('likedToons', []);
+    }
+  }
+
+  void onHeartTap() async {
+    print('onHeartTap..');
+    final likedToons = prefs.getStringList('likedToons');
+    if (likedToons != null) {
+      if (isLike) {
+        likedToons.remove(widget.id);
+      } else {
+        likedToons.add(widget.id);
+      }
+
+      await prefs.setStringList('likedToons', likedToons);
+
+      setState(() {
+        isLike = !isLike;
+      });
+    }
+  }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     webtoon = ApiService.getToonById(widget.id);
     // widget이라는 것은 부모의 값
 
     episodes = ApiService.getLatestEpisodesById(widget.id);
+    initPrefs();
   }
 
   @override
@@ -43,6 +81,12 @@ class _DetailScreenState extends State<DetailScreen> {
         elevation: 2,
         backgroundColor: Colors.white,
         foregroundColor: Colors.green,
+        actions: [
+          IconButton(
+            onPressed: onHeartTap,
+            icon: isLike ? const Icon(Icons.favorite) : const Icon(Icons.favorite_outline)
+          ),
+        ],
         title: Text(
           widget.title,
           style: const TextStyle(
@@ -127,4 +171,3 @@ class _DetailScreenState extends State<DetailScreen> {
     );
   }
 }
-

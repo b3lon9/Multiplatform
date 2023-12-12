@@ -212,6 +212,8 @@ Column
 ```text
 Timer   + import 'dart:async';
     Timer.periodic(Duration(seconds:1), (timer) {})
+    
+비동기 메서드는 반환 값을 Future로 받는다.
 ```
 
 ```text
@@ -229,7 +231,7 @@ pubspec.yaml
 ```
 
 ```text
-플러터에서 브라우저를 여는 방법,
+[플러터에서 브라우저를 여는 방법,]
 
 url_launcher라는 것을 다운 받아야 한다.
     dependencies
@@ -237,4 +239,9 @@ url_launcher라는 것을 다운 받아야 한다.
         
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+
+
+[저장소에 데이터 저장하기]
+shared preference
+
 ```
