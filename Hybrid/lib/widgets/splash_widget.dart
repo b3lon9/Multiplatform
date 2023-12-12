@@ -16,7 +16,7 @@ class _SplashWidgetState extends State<SplashWidget> {
   bool isLoadComplete = false;
 
   void onNextProcess() {
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const HomeWidget()),
