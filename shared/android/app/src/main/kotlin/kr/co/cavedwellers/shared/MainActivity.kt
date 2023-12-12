@@ -1,0 +1,6 @@
+package kr.co.cavedwellers.shared
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
