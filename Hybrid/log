@@ -1,0 +1,12 @@
+flutter splash sdk
+    path : pubspec.yaml
+        dependencies:
+          flutter:
+            sdk: flutter
+
+          flutter_native_splash: ^2.3.8
+
+        flutter_native_splash:
+            color: #FFFFFF
+
+    cmd : dart run flutter_native_splash:create / remove

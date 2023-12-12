@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:hybrid/widgets/splash_widget.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
