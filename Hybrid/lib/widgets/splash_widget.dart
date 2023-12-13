@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:hybrid/widgets/home_widget.dart';
-
+import 'package:hybrid/widgets/login_widget.dart';
+import 'package:hybrid/util/animation_util.dart';
 
 class SplashWidget extends StatefulWidget {
 
@@ -17,11 +18,15 @@ class _SplashWidgetState extends State<SplashWidget> {
 
   void onNextProcess() {
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushAndRemoveUntil(
+      /*Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => const HomeWidget()),
+        // MaterialPageRoute(builder: (context) => const LoginWidget()),
+        SizeRoute(page: const LoginWidget()),
         (route) => false,
-      );
+      );*/
+      // Navigator.push(context, FadeRoute(page: const LoginWidget()));
+      Navigator.push(context, AnimationUtil.FadeRoute(const LoginWidget()));
+
     });
   }
 
@@ -60,7 +65,7 @@ class _SplashWidgetState extends State<SplashWidget> {
           Visibility(
             visible: isLoadComplete,
             child: const Center(
-              child: CircularProgressIndicator(),
+              child: CupertinoActivityIndicator(),
             )
           ),
         ],

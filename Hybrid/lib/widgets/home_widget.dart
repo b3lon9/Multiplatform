@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hybrid/webview/webview_controller.dart';
+import 'package:hybrid/widgets/web/webview_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -54,6 +55,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             WebViewWidget(
               controller: webviewController,
             ),
+            const Center(child: CupertinoActivityIndicator()),
           ],
         ),
       ),
