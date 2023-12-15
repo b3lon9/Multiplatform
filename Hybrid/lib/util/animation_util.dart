@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AnimationUtil  {
-  static AnimationUtil? instance;
+  /*static AnimationUtil? _instance;
 
   // private
   AnimationUtil._();
 
   factory AnimationUtil.getInstance() {
-    instance ??= AnimationUtil._();
-    return instance!;
-  }
+    _instance ??= AnimationUtil._();
+    return _instance!;
+  }*/
 
   static PageRouteBuilder SlideRightRoute(Widget page) {
     return PageRouteBuilder(

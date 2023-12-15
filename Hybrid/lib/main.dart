@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:hybrid/widgets/splash_widget.dart';
+import 'package:hybrid/widgets/login_widget.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Hybrid Application',
-      home: SplashWidget(),
+      home: kDebugMode ? LoginWidget() : SplashWidget(),
     );
   }
 }

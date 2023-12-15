@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hybrid/widgets/web/webview_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import 'package:hybrid/data/constant.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
@@ -30,7 +31,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         },
       )
     )
-    ..loadRequest(Uri.parse("https://m.ssamplus.com/index_songcheck.asp"));
+    ..loadRequest(Uri.parse(Constant.webPath.homepageUrl));
 
 
   @override

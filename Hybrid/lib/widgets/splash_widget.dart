@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:hybrid/data/constant.dart';
 
 import 'package:hybrid/widgets/login_widget.dart';
 import 'package:hybrid/util/animation_util.dart';
@@ -13,44 +15,47 @@ class SplashWidget extends StatefulWidget {
 }
 
 class _SplashWidgetState extends State<SplashWidget> {
-  final String TAG = "SplashWidget";
+  final String _tag = "SplashWidget";
   bool isLoadComplete = false;
 
+  // 여기서 권한, 로그인 Cookie확인
   void onNextProcess() {
     Future.delayed(const Duration(seconds: 2), () {
-      /*Navigator.pushAndRemoveUntil(
+      // Navigator.push(context, AnimationUtil.FadeRoute(const LoginWidget()));
+      Navigator.pushAndRemoveUntil(
         context,
-        // MaterialPageRoute(builder: (context) => const LoginWidget()),
-        SizeRoute(page: const LoginWidget()),
-        (route) => false,
-      );*/
-      // Navigator.push(context, FadeRoute(page: const LoginWidget()));
-      Navigator.push(context, AnimationUtil.FadeRoute(const LoginWidget()));
-
+        AnimationUtil.FadeRoute(const LoginWidget()),
+        (route) => false
+      );
     });
   }
 
   @override
   void initState() {
     super.initState();
-    print('$TAG.. initState.. before');
+    if (kDebugMode) {
+      print('$_tag.. initState.. ');
+    }
 
     // 1초 후 progressbar 표출
     Future.delayed(const Duration(seconds: 2), () {
-      print('$TAG.. initState.. delay..');
+      if (kDebugMode) {
+        print('$_tag.. initState.. ');
+      }
       setState(() {
         isLoadComplete = true;
         onNextProcess();
       });
     });
 
-    print('$TAG.. initState.. after');
   }
 
   @override
   void dispose() {
     super.dispose();
-    print('$TAG.. dispose..');
+    if (kDebugMode) {
+      print('$_tag.. dispose..');
+    }
   }
 
   @override
@@ -59,7 +64,7 @@ class _SplashWidgetState extends State<SplashWidget> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          Image.asset('assets/images/img_splash_bg.png',
+          Image.asset(Constant.imagePath.splashImg,
             fit: BoxFit.fill,
           ),
           Visibility(
