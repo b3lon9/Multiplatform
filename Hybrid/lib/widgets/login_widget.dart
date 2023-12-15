@@ -12,7 +12,7 @@ class LoginWidget extends StatefulWidget {
   State<LoginWidget> createState() => _LoginWidgetState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
+class _LoginWidgetState extends State<LoginWidget> implements ClickListener {
   final String tag = "LoginWidget";
 
   // move WebView
@@ -48,7 +48,7 @@ class _LoginWidgetState extends State<LoginWidget> {
       ),
       body: Column(
         children: [
-          const InfoInputWidget(),
+          InfoInputWidget(this),
           const SizedBox(height: 16,),
           const Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -63,5 +63,10 @@ class _LoginWidgetState extends State<LoginWidget> {
         ],
       ),
     );
+  }
+
+  @override
+  void onClick(String id, String pw) {
+    print('onCLick........id:$id, pw:$pw');
   }
 }
