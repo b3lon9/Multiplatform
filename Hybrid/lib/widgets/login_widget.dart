@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:toast/toast.dart';
 
 import 'package:hybrid/widgets/home_widget.dart';
 import 'package:hybrid/widgets/login/input_info_widget.dart';
@@ -41,6 +42,8 @@ class _LoginWidgetState extends State<LoginWidget> implements ClickListener {
 
   @override
   Widget build(BuildContext context) {
+    ToastContext().init(context);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,  // softkeyboard overflowed
       appBar: AppBar(
@@ -68,5 +71,8 @@ class _LoginWidgetState extends State<LoginWidget> implements ClickListener {
   @override
   void onClick(String id, String pw) {
     print('onCLick........id:$id, pw:$pw');
+    Toast.show("토스트 메시지 테스트", duration: 2, gravity: Toast.bottom);
+
+    moveHomeWidgetToWebView();
   }
 }

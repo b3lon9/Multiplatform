@@ -21,6 +21,8 @@ class _InfoInputWidgetState extends State<InfoInputWidget> {
   late ClickListener clickListener;
   final _tfControllerID = TextEditingController();
   final _tfControllerPW = TextEditingController();
+  final _tfFocusNodeID = FocusNode();
+  final _tfFocusNodePW = FocusNode();
 
   _InfoInputWidgetState(ClickListener listener) {
     clickListener = listener;
@@ -43,12 +45,22 @@ class _InfoInputWidgetState extends State<InfoInputWidget> {
             height: 50,
             child: TextField(
               controller: _tfControllerID,
+              focusNode: _tfFocusNodeID,
               onTapOutside: (event) {
                 FocusManager.instance.primaryFocus?.unfocus();
               },
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.next,
+              onSubmitted: (value) {
+                // FocusScope.of(context).nextFocus();
+                _tfFocusNodePW.requestFocus();
+              },
               style: const TextStyle(fontSize: 16),
               decoration: const InputDecoration(
-                  labelText: '아이디', border: OutlineInputBorder()),
+                labelText: '아이디',
+                border: OutlineInputBorder(),
+                // hintText: 'kimjh'
+              ),
             ),
           ),
 
@@ -61,9 +73,12 @@ class _InfoInputWidgetState extends State<InfoInputWidget> {
             height: 50,
             child: TextField(
               controller: _tfControllerPW,
+              focusNode: _tfFocusNodePW,
               onTapOutside: (event) {
                 FocusManager.instance.primaryFocus?.unfocus();
               },
+              keyboardType: TextInputType.visiblePassword,
+              textInputAction: TextInputAction.done,
               obscureText: !isPasswordVisible,    // 비밀번호 암호화
               decoration: InputDecoration(
                 labelText: '비밀번호',
