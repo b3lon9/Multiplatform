@@ -159,6 +159,16 @@ class FirstScreen extends StatelessWidget {
   }
 
   Widget _buildBottom() {
-    return const Text('bottom');
+    final items = List.generate(10, (index) =>
+      const ListTile(
+        leading: Icon(Icons.notifications_none),
+        title: Text('[이벤트] 이것은 공지사항입니다.'),
+      )
+    );
+    return ListView(
+      physics: NeverScrollableScrollPhysics(),  // 리스트 스크롤 동작 금지
+      shrinkWrap: true, // 다른 스크롤 내부에 있으면 true설정해주어야 함
+      children: items,
+    );
   }
 }
